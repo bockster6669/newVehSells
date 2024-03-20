@@ -1,3 +1,6 @@
+import { MdHome } from "react-icons/md";
+
+
 export const ads = [
   {
     id: 1,
@@ -198,6 +201,21 @@ export const ads = [
     imgLinks: ["pony2.png"],
   },
 ];
+
+export const navLinks = [
+  {
+    text: "Home",
+    path: "home",
+  },
+  {
+    text: "Favourites",
+    path: "fav",
+  },
+  {
+    text: "Profile",
+    path: "profile",
+  },
+]
 
 export function getAd(id) {
   const ad = ads.find((ad) => ad.id == id);

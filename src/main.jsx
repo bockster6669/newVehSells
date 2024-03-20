@@ -2,13 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./index.css";
-
 import Root from "./Root.jsx";
-import Home from "./pages/Home.jsx";
+import Home from "./pages/Ads.jsx";
 import Favourites from "./pages/Favourites.jsx";
 import Profile from "./pages/Profile.jsx";
 import VehView from "./pages/VehView.jsx";
 import { loader as VehViewLoader } from "./pages/VehView.jsx";
+
+
 const router = createBrowserRouter([
   {
     path: "/newVehSells",
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        path: 'home',
         element: <Home />,
       },
       {
@@ -27,7 +29,7 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
       {
-        path: "vehView/:adId",
+        path: "home/vehView/:adId",
         element: <VehView />,
         loader: VehViewLoader,
       },
