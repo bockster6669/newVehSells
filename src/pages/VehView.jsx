@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "@/components/Button";
 import {
   Carousel,
   CarouselContent,
@@ -7,20 +6,32 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { getAd } from "../assets/data";
+import { useLoaderData } from "react-router-dom";
+import { getImageUrl } from "@/utils/image-util";
+
+export function loader({ params }) {
+  const ad = getAd(params.adId);
+  return { ad };
+}
 
 export default function VehView() {
+  let { ad } = useLoaderData();
+  let id = ad.id;
   return (
-    <div className="h-[90%]">
+    <div className="flex justify-center">
       <Carousel
-       opts={{
-        align: "start",
-      }}
-      className="w-full max-w-sm">
-        
+        opts={{
+          align: "start",
+        }}
+        className="w-full max-w-sm"
+      >
         <CarouselContent>
-          <CarouselItem>...</CarouselItem>
-          <CarouselItem>...</CarouselItem>
-          <CarouselItem>...</CarouselItem>
+          {ad.imgLinks.map((imgLink) => (
+            <CarouselItem key={imgLink}>
+              <img src={getImageUrl(imgLink)}></img>
+            </CarouselItem>
+          ))}
         </CarouselContent>
         <CarouselPrevious />
         <CarouselNext />

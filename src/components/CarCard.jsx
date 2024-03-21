@@ -1,15 +1,16 @@
 import React from "react";
-import TurismoIMG from "../assets/turismo-omaggio.jpg";
 import { Link } from "react-router-dom";
 import Button from "./Button";
-export default function CarCard({ name, price, info }) {
+import { getImageUrl } from "@/utils/image-util";
+
+export default function CarCard({ id, img, name, price, info }) {
+
   return (
-    // style={{borderStyle:"ridge", borderWidth:"3px"}}
     <div className=" box-border p-4 w-[200px] max-h-[320px] bg-slate-300 rounded-md overflow-hidden">
-      <Link to={`/VehView`}>
+      <Link to={`VehView/${id}`}>
         <div className="relative h-full">
           <div className=" w-full h-[100px] rounded-sm overflow-hidden bg-black">
-            <img src={TurismoIMG} className=" w-full h-full" />
+            {img ? <img src={getImageUrl(img)} className=" w-full h-full" /> : "Loading..."}
           </div>
           <header>
             <h2 className=" text-center text-lg my-2">
@@ -17,9 +18,7 @@ export default function CarCard({ name, price, info }) {
             </h2>
           </header>
           <div className="flex justify-end">
-            <Button color="bg-green-500">
-              {price}$
-            </Button>
+            <Button color="bg-green-500">{price}$</Button>
           </div>
           <main className=" max-h-[25%] overflow-hidden grid grid-cols-2  my-2 text-gray-500">
             {info.map((infoItem, index) => (

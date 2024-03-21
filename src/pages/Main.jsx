@@ -1,9 +1,8 @@
 import React from "react";
 import CarCard from "@/components/CarCard";
-import { carsList } from "@/assets/cars.js";
+import { ads } from "@/assets/data.js";
 import Button from "@/components/Button";
-import { Route, Routes } from "react-router-dom";
-import VehView from "./VehView";
+
 export default function Main() {
   return (
     <div className="h-[90%] ">
@@ -17,10 +16,12 @@ export default function Main() {
         </div>
       </div>
       <div className="w-fill h-[90%] flex flex-wrap box-border p-4 overflow-y-auto gap-4">
-        {carsList.map((car) => {
+        {ads.map((car) => {
           return (
             <CarCard
               key={car.id}
+              id={car.id}
+              img={car.imgLinks[0]}
               name={car.name}
               price={car.price}
               info={car.info}
