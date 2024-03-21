@@ -16,7 +16,6 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        path: "home",
         element: <Home />,
       },
       {
@@ -28,7 +27,7 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
       {
-        path: "home/vehView/:adId",
+        path: "vehView/:adId",
         element: <VehView />,
         loader: VehViewLoader,
       },

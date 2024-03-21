@@ -5,8 +5,8 @@ import Button from "@/components/Button";
 
 export default function Home() {
   return (
-    <div className="h-[90%] ">
-      <div className="max-h-[10%] overflow-y-auto bg-blue-100 ">
+    <div>
+      {/* <div className=" bg-blue-100 ">
         <div className="text-center">filters</div>
         <div className="flex gap-2">
           <Button color="bg-black">Купе</Button>
@@ -14,8 +14,8 @@ export default function Home() {
           <Button color="bg-black">Двигател</Button>
           <Button color="bg-black">Състояние</Button>
         </div>
-      </div>
-      <div className="w-fill h-[90%] flex flex-wrap box-border p-4 overflow-y-auto gap-4">
+      </div> */}
+      <div className="flex flex-wrap items-center justify-center box-border overflow-auto  p-4 gap-4">
         {ads.map((car) => {
           return (
             <CarCard

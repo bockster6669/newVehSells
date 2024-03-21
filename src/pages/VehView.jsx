@@ -17,7 +17,7 @@ export function loader({ params }) {
 
 export default function VehView() {
   let { ad } = useLoaderData();
-  let id = ad.id;
+  
   return (
     <div className="flex justify-center">
       <Carousel

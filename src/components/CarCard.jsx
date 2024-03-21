@@ -4,13 +4,16 @@ import Button from "./Button";
 import { getImageUrl } from "@/utils/image-util";
 
 export default function CarCard({ id, img, name, price, info }) {
-
   return (
-    <div className=" box-border p-4 w-[200px] max-h-[320px] bg-slate-300 rounded-md overflow-hidden">
+    <div className=" box-border p-4 w-[200px] max-h-[320px] bg-slate-300 rounded-md overflow-hidden shadow-lg border-[1px] border-solid border-green-100">
       <Link to={`VehView/${id}`}>
         <div className="relative h-full">
           <div className=" w-full h-[100px] rounded-sm overflow-hidden bg-black">
-            {img ? <img src={getImageUrl(img)} className=" w-full h-full" /> : "Loading..."}
+            {img ? (
+              <img src={getImageUrl(img)} className=" w-full h-full" />
+            ) : (
+              "Loading..."
+            )}
           </div>
           <header>
             <h2 className=" text-center text-lg my-2">
@@ -30,7 +33,7 @@ export default function CarCard({ id, img, name, price, info }) {
               </React.Fragment>
             ))}
           </main>
-          <footer className="absolute bottom-2 mt-5">
+          <footer className="mt-5">
             <p className=" text-xs text-gray-500">
               <strong>Boris Foster</strong> from <strong>One Shot</strong>
             </p>
