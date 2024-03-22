@@ -25,7 +25,7 @@ function Root() {
         </ul>
       </nav>
       <main className={"flex-1 overflow-auto relative"}>
-        <div className=" bg-orange-500 flex justify-start text-2xl text-white box-border p-4 font-roboto font-bold">
+        <div className=" sticky top-0 z-10 bg-orange-500 flex justify-start text-2xl text-white box-border p-4 font-roboto font-bold">
           Cars.bg
         </div>
         <Outlet />

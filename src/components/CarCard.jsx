@@ -34,10 +34,11 @@ const CardHeader = ({ children, className }) => (
 export default function CarCard({ id, img, name, price, info }) {
   return (
     <CardBody>
-      <Link to={`VehView/${id}`}>
+      <Link to={`http://localhost:5173/newVehSells/Ads/VehView/${id}`}>
         <CardContent>
           <CardImg>
             {img ? (
+              
               <img src={getImageUrl(img)} className=" w-full h-full" />
             ) : (
               "Loading..."

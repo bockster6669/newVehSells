@@ -64,6 +64,10 @@ export const navLinks = [
     text: "Profile",
     path: "profile",
   },
+  {
+    text: "MyAds",
+    path: "myads",
+  },
 ];
 
 export function getAd(id) {

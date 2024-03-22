@@ -1,42 +1,46 @@
 import React from "react";
-import { Form } from "react-router-dom";
+import { Form, useLoaderData, useLocation } from "react-router-dom";
 function CreateAd() {
+  const data = useLoaderData();
+  const location = useLocation();
+  const url = location.pathname; 
+  const isCreateWithIdAfterAds = url.match(/Ads\/create\/(?=\d+)/);
   return (
-    <Form method="post" action="/newVehSells/ads" className="flex flex-col">
+    <Form method={isCreateWithIdAfterAds ? "PUT" : "POST"} action="/newVehSells/ads" className="flex flex-col">
       <label>Name:</label>
-      <input type="text" name="name" />
+      <input type="text" name="name" defaultValue={data.name}/>
       <br></br>
 
       <label>price:</label>
-      <input type="text" name="price" />
+      <input type="text" name="price" defaultValue={data.price} />
       <br></br>
 
       <label>Type:</label>
-      <input type="text" name="type" />
+      <input type="text" name="type" defaultValue={data.info.type}/>
       <br></br>
 
       <label>Year:</label>
-      <input type="text" name="year" />
+      <input type="text" name="year" defaultValue={data.info.year}/>
       <br></br>
 
       <label>date:</label>
-      <input type="text" name="date" />
+      <input type="text" name="date" defaultValue={data.date}/>
       <br></br>
 
       <label>views:</label>
-      <input type="text" name="views" />
+      <input type="text" name="views" defaultValue={data.views}/>
       <br></br>
 
       <label>text:</label>
-      <input type="text" name="text" />
+      <input type="text" name="text" defaultValue={data.text} />
       <br></br>
 
       <label>sellerLocation:</label>
-      <input type="text" name="sellerLocation" />
+      <input type="text" name="sellerLocation" defaultValue={data.sellerLocation}/>
       <br></br>
 
       <label>extras:</label>
-      <input type="text" name="extras" />
+      <input type="text" name="extras" defaultValue={data.extras}/>
       <br></br>
 
       <button>Submit</button>
@@ -44,21 +48,9 @@ function CreateAd() {
   );
 }
 
-/**
- "name": "",
-      "price": 2000000,
-      "info": {
-        "Type": "Tugboat",
-        "Year": "2013"
-      },
-      "imgLinks": [
-        "airtug.png"
-      ],
-      "date": "21.03.2024",
-      "views": 400,
-      "text": "Много добро техническо състояние Лизинг с 30% първоначална вноска !!! без доказване на доходи лоши цкр без проблем  Възможност за !!! бартер Възможност за лизинг",
-      "sellerLocation": "Козлодуй",
-      "extras": "Ко
-*/
+export async function loader({params}) {
+  const data = await fetch(`http://localhost:4000/myads/4`).then((r)=>r.json());
+  return data;
+}
 
 export default CreateAd;

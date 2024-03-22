@@ -11,7 +11,7 @@ export default function Ads() {
   const data = useLoaderData();
   return (
     <div>
-      <div className=" bg-blue-100 sticky top-0 z-10 box-border p-2 flex flex-wrap items-center justify-center">
+      <div className=" bg-blue-100 box-border p-2 flex flex-wrap items-center justify-center">
         <div className="flex gap-2">
           <Button className="bg-black">Купе</Button>
           <Button className="bg-black">Година</Button>
@@ -41,32 +41,49 @@ export default function Ads() {
 }
 
 export async function loader({ params }) {
-  const carList = await fetch('http://localhost:4000/carList').then((resp)=>resp.json())
-  return {carList};
+  const carList = await fetch("http://localhost:4000/carList").then((resp) =>
+    resp.json()
+  );
+  return { carList };
 }
 
 export async function action({ request }) {
   const formData = await request.formData();
-  const newAd = Object.fromEntries(formData)
+  const newAd = Object.fromEntries(formData);
 
-  fetch("http://localhost:4000/carList", {
-    method: "POST",
-    body: JSON.stringify(
-      {
-        "id": 4,
-        "name": newAd.name,
-        "price": newAd.price,
-        "info": { "Type": newAd.type, "Year": newAd.year},
-        "imgLinks": ["airtug.png"],
-        "date": newAd.date,
-        "views": newAd.views,
-        "text": newAd.text,
-        "sellerLocation": newAd.sellerLocation,
-        "extras": newAd.extras
-      }
-    )
-  });
-  //send to backend
-  // return ad;
+  switch (request.method) {
+    case "POST":
+      fetch("http://localhost:4000/carList", {
+        method: "POST",
+        body: JSON.stringify({
+          id: "4",
+          name: newAd.name,
+          price: newAd.price,
+          info: { Type: newAd.type, Year: newAd.year },
+          imgLinks: [{ id: "1", img: "airtug.png" }],
+          date: newAd.date,
+          views: newAd.views,
+          text: newAd.text,
+          sellerLocation: newAd.sellerLocation,
+          extras: newAd.extras,
+        }),
+      });
+    case "PUT":
+      fetch("http://localhost:4000/carList/4", {
+        method: "PUT",
+        body: JSON.stringify({
+          id: "4",
+          name: newAd.name,
+          price: newAd.price,
+          info: { Type: newAd.type, Year: newAd.year },
+          imgLinks: [{ id: "1", img: "airtug.png" }],
+          date: newAd.date,
+          views: newAd.views,
+          text: newAd.text,
+          sellerLocation: newAd.sellerLocation,
+          extras: newAd.extras,
+        }),
+      });
+  }
   return redirect("/newVehSells/ads/vehView/1");
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -6,24 +7,31 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { getAd } from "../assets/data";
 import { useLoaderData } from "react-router-dom";
 import { getImageUrl } from "@/utils/image-util";
 import { Separator } from "@/components/ui/separator";
 import Button from "@/components/Button";
-import { BsTelephoneFill  } from "react-icons/bs";
-
+import { BsTelephoneFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 import { BsChatDotsFill } from "react-icons/bs";
-
-export async function loader({ params }) {
-  const id = [params.adId]
-  const ad = await fetch('http://localhost:4000/carList/'+id).then((resp)=>resp.json())
-  console.log(ad)
-  return ad;
-}
-
+import { Link } from "react-router-dom";
 export default function VehView() {
+  const navigate = useNavigate();
   let ad = useLoaderData();
+
+  const handleDelete = async () => {
+    try {
+      const response = await fetch(`http://localhost:4000/myads/${ad.id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error deleting data: ${response.statusText}`);
+      }
+
+      navigate("/newVehSells/ads");
+    } catch (error) {}
+  };
 
   return (
     <div className="flex justify-center box-border p-5 ">
@@ -63,14 +71,32 @@ export default function VehView() {
             <Separator className="mb-4 border-[1px] border-black mt-2" />
             <p>Контакт с продавача</p>
             <br />
-            <div className="flex gap-4 ml-24">
+            <div className="flex gap-4">
               <Button className="bg-[#8dbe35] rounded-sm p-4 text-xl gap-2">
-                <BsTelephoneFill  />
+                <BsTelephoneFill />
                 089 434 2688
               </Button>
               <Button className="bg-[#fb923c] rounded-sm p-4 text-xl gap-2">
                 <BsChatDotsFill />
                 Start a chat
+              </Button>
+              {
+                //TODO: create restrictions for Edit and Delete buttons
+              }
+              <Link
+                to={`http://localhost:5173/newVehSells/Ads/create/${ad.id}`}
+              >
+                <Button className="bg-[#06b6d4] rounded-sm p-4 text-xl gap-2">
+                  <BsChatDotsFill />
+                  Edit
+                </Button>
+              </Link>
+              <Button
+                className="bg-[#dc2626] rounded-sm p-4 text-xl gap-2"
+                onClick={handleDelete}
+              >
+                <BsChatDotsFill />
+                Delete
               </Button>
             </div>
           </div>
@@ -99,4 +125,12 @@ export default function VehView() {
       </div>
     </div>
   );
+}
+
+export async function loader({ params }) {
+  const id = params.adId;
+  const ad = await fetch("http://localhost:4000/carList/" + id).then((resp) =>
+    resp.json()
+  );
+  return ad;
 }

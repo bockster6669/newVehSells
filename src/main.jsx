@@ -9,11 +9,17 @@ import Favorites from "./pages/Favorites.jsx";
 import Profile from "./pages/Profile.jsx";
 import VehView from "./pages/VehView.jsx";
 import CreateAd from "./pages/CreateAd";
-
+import MyAds from "./pages/MyAds.jsx";
 import { loader as VehViewLoader } from "./pages/VehView.jsx";
 import { loader as AdsLoader } from "./pages/Ads.jsx";
+import { loader as MyAdsLoader } from "./pages/MyAds.jsx";
+import { loader as CreateAdLoader } from "./pages/CreateAd.jsx";
+
+
 
 import { action as createAdAction } from "./pages/Ads";
+
+
 
 const router = createBrowserRouter([
   {
@@ -36,13 +42,19 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
       {
-        path: "Ads/create",
+        path: "Ads/create/:id?",
         element: <CreateAd />,
+        loader: CreateAdLoader,
       },
       {
         path: "Ads/vehView/:adId",
         element: <VehView />,
         loader: VehViewLoader,
+      },
+      {
+        path: "myads",
+        element: <MyAds />,
+        loader: MyAdsLoader
       },
     ],
   },
