@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+input {
+  background-color: #cbd5e1;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -66,7 +70,6 @@
   }
 }
 
-
 .active {
   background-color: #e11d48;
 }
@@ -79,7 +82,6 @@
   transition: opacity 200ms;
   transition-delay: 200ms;
 }
-
 
 body {
   min-height: 100vh;

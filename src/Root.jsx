@@ -1,6 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { navLinks } from "./assets/data";
-
+import { createElement } from "react";
+import { BsFillHouseFill } from "react-icons/bs";
 function Root() {
   return (
     <div className="w-[90vw] h-[90vh] bg-slate-200 rounded-md overflow-hidden shadow-xl flex">
@@ -23,7 +24,10 @@ function Root() {
           ))}
         </ul>
       </nav>
-      <main className={"flex-1 overflow-auto"}>
+      <main className={"flex-1 overflow-auto relative"}>
+        <div className=" bg-orange-500 flex justify-start text-2xl text-white box-border p-4 font-roboto font-bold">
+          Cars.bg
+        </div>
         <Outlet />
       </main>
     </div>

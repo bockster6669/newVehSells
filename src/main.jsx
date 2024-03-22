@@ -1,14 +1,19 @@
+import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import "./index.css";
+
 import Root from "./Root.jsx";
-import Home from "./pages/Ads.jsx";
-import Favourites from "./pages/Favourites.jsx";
+import Ads from "./pages/Ads.jsx";
+import Favorites from "./pages/Favorites.jsx";
 import Profile from "./pages/Profile.jsx";
 import VehView from "./pages/VehView.jsx";
-import { loader as VehViewLoader } from "./pages/VehView.jsx";
+import CreateAd from "./pages/CreateAd";
 
+import { loader as VehViewLoader } from "./pages/VehView.jsx";
+import { loader as AdsLoader } from "./pages/Ads.jsx";
+
+import { action as createAdAction } from "./pages/Ads";
 
 const router = createBrowserRouter([
   {
@@ -17,19 +22,25 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        path: 'home',
-        element: <Home />,
+        path: "ads",
+        element: <Ads />,
+        loader: AdsLoader,
+        action: createAdAction,
       },
       {
         path: "fav",
-        element: <Favourites />,
+        element: <Favorites />,
       },
       {
         path: "profile",
         element: <Profile />,
       },
       {
-        path: "home/vehView/:adId",
+        path: "Ads/create",
+        element: <CreateAd />,
+      },
+      {
+        path: "Ads/vehView/:adId",
         element: <VehView />,
         loader: VehViewLoader,
       },

@@ -1,211 +1,60 @@
 import { MdHome } from "react-icons/md";
 
-
 export const ads = [
   {
     id: 1,
     name: "Adder",
     price: 1200000,
-    info: [{ Type: "Sports Classic" }, { Year: "2013" }],
-    imgLinks: ["adder.png"],
+    info: { Type: "Sports Classic", Year: "2013" },
+    imgLinks: ["adder.png", "adder.png", "adder.png"],
+    date: "21.03.2024",
+    views: 400,
+    text: "Много добро техническо състояние Лизинг с 30% първоначална вноска !!! без доказване на доходи лоши цкр без проблем  Възможност за !!! бартер Възможност за лизинг",
+    sellerLocation: "Козлодуй",
+    extras: ` Комфорт: Климатроник, Кожен салон, Ел.стъкла, Ел.огледала,
+    Ел.седалки, Подгряване на седалки, Стерео уредба, Алуминиеви
+    джанти, Мултифункционален волан Сигурност: ABS, ESP, Airbag,
+    Халогенни фарове, Аларма, Имобилайзер, Центр. заключване Друго:
+    Автопилот, Серво управление, Бордови компютър`,
   },
   {
     id: 2,
     name: "Airbus",
     price: 5000000, // Adjust price as needed
-    info: [{ Type: "Helicopter" }],
+    info: { Type: "Helicopter", Year: "2013" },
     imgLinks: ["airbus.png"],
+    date: "21.03.2024",
+    views: 400,
+    text: "Много добро техническо състояние Лизинг с 30% първоначална вноска !!! без доказване на доходи лоши цкр без проблем  Възможност за !!! бартер Възможност за лизинг",
+    sellerLocation: "Козлодуй",
+    extras: ` Комфорт: Климатроник, Кожен салон, Ел.стъкла, Ел.огледала,
+    Ел.седалки, Подгряване на седалки, Стерео уредба, Алуминиеви
+    джанти, Мултифункционален волан Сигурност: ABS, ESP, Airbag,
+    Халогенни фарове, Аларма, Имобилайзер, Центр. заключване Друго:
+    Автопилот, Серво управление, Бордови компютър`,
   },
   {
     id: 3,
     name: "Airtug",
     price: 2000000, // Adjust price as needed
-    info: [{ Type: "Tugboat" }],
+    info: { Type: "Tugboat", Year: "2013" },
     imgLinks: ["airtug.png"],
-  },
-  {
-    id: 4,
-    name: "Akula",
-    price: 800000, // Adjust price as needed
-    info: [{ Type: "Attack Helicopter" }],
-    imgLinks: ["akula.png"],
-  },
-  {
-    id: 5,
-    name: "Akuma",
-    price: 45000,
-    info: [{ Type: "Motorcycle" }],
-    imgLinks: ["akuma.png"],
-  },
-  {
-    id: 6,
-    name: "Alpha",
-    price: 150000,
-    info: [{ Type: "Sports Car" }],
-    imgLinks: ["alpha.png"],
-  },
-  {
-    id: 7,
-    name: "Alpha Z1",
-    price: 200000,
-    info: [{ Type: "Sports Car" }],
-    imgLinks: ["alphaz1.png"],
-  },
-  {
-    id: 8,
-    name: "Ambulance",
-    price: 150000,
-    info: [{ Type: "Emergency Vehicle" }],
-    imgLinks: ["ambulance.png"],
-  },
-  {
-    id: 9,
-    name: "Annihilator",
-    price: 4000000, // Adjust price as needed
-    info: [{ Type: "Military Helicopter" }],
-    imgLinks: ["annihilator.png"],
-  },
-  {
-    id: 10,
-    name: "APC",
-    price: 1500000, // Adjust price as needed
-    info: [{ Type: "Military Vehicle" }],
-    imgLinks: ["apc.png"],
-  },
-  {
-    id: 11,
-    name: "Dominator",
-    price: 1500000, // Adjust price as needed
-    info: [{ Type: "Military Vehicle" }],
-    imgLinks: ["dominator.png", "dominator1.png", "dominator2.png"],
-  },
-  {
-    id: 12,
-    name: "Baller",
-    price: 1500000, // Adjust price as needed
-    info: [{ Type: "Military Vehicle" }],
-    imgLinks: ["baller.png", "baller2.png", "baller3.png"],
-  },
-  {
-    id: 13,
-    name: "Dubsta",
-    price: 1500000, // Adjust price as needed
-    info: [{ Type: "Military Vehicle" }],
-    imgLinks: ["dubsta.png", "dubsta2.png", "dubsta3.png"],
-  },
-  // ... Add 10 more objects following the same structure and adjust image names ...
-  {
-    id: 20,
-    name: "Pony 2",
-    price: 60000,
-    info: [{ Type: "Muscle Car" }],
-    imgLinks: ["pony2.png"],
-  },
-  {
-    id: 1,
-    name: "Adder",
-    price: 1200000,
-    info: [{ Type: "Sports Classic" }, { Year: "2013" }],
-    imgLinks: ["adder.png"],
-  },
-  {
-    id: 2,
-    name: "Airbus",
-    price: 5000000, // Adjust price as needed
-    info: [{ Type: "Helicopter" }],
-    imgLinks: ["airbus.png"],
-  },
-  {
-    id: 3,
-    name: "Airtug",
-    price: 2000000, // Adjust price as needed
-    info: [{ Type: "Tugboat" }],
-    imgLinks: ["airtug.png"],
-  },
-  {
-    id: 4,
-    name: "Akula",
-    price: 800000, // Adjust price as needed
-    info: [{ Type: "Attack Helicopter" }],
-    imgLinks: ["akula.png"],
-  },
-  {
-    id: 5,
-    name: "Akuma",
-    price: 45000,
-    info: [{ Type: "Motorcycle" }],
-    imgLinks: ["akuma.png"],
-  },
-  {
-    id: 6,
-    name: "Alpha",
-    price: 150000,
-    info: [{ Type: "Sports Car" }],
-    imgLinks: ["alpha.png"],
-  },
-  {
-    id: 7,
-    name: "Alpha Z1",
-    price: 200000,
-    info: [{ Type: "Sports Car" }],
-    imgLinks: ["alphaz1.png"],
-  },
-  {
-    id: 8,
-    name: "Ambulance",
-    price: 150000,
-    info: [{ Type: "Emergency Vehicle" }],
-    imgLinks: ["ambulance.png"],
-  },
-  {
-    id: 9,
-    name: "Annihilator",
-    price: 4000000, // Adjust price as needed
-    info: [{ Type: "Military Helicopter" }],
-    imgLinks: ["annihilator.png"],
-  },
-  {
-    id: 10,
-    name: "APC",
-    price: 1500000, // Adjust price as needed
-    info: [{ Type: "Military Vehicle" }],
-    imgLinks: ["apc.png"],
-  },
-  {
-    id: 11,
-    name: "Dominator",
-    price: 1500000, // Adjust price as needed
-    info: [{ Type: "Military Vehicle" }],
-    imgLinks: ["dominator.png", "dominator1.png", "dominator2.png"],
-  },
-  {
-    id: 12,
-    name: "Baller",
-    price: 1500000, // Adjust price as needed
-    info: [{ Type: "Military Vehicle" }],
-    imgLinks: ["baller.png", "baller2.png", "baller3.png"],
-  },
-  {
-    id: 13,
-    name: "Dubsta",
-    price: 1500000, // Adjust price as needed
-    info: [{ Type: "Military Vehicle" }],
-    imgLinks: ["dubsta.png", "dubsta2.png", "dubsta3.png"],
-  },
-  // ... Add 10 more objects following the same structure and adjust image names ...
-  {
-    id: 20,
-    name: "Pony 2",
-    price: 60000,
-    info: [{ Type: "Muscle Car" }],
-    imgLinks: ["pony2.png"],
+    date: "21.03.2024",
+    views: 400,
+    text: "Много добро техническо състояние Лизинг с 30% първоначална вноска !!! без доказване на доходи лоши цкр без проблем  Възможност за !!! бартер Възможност за лизинг",
+    sellerLocation: "Козлодуй",
+    extras: ` Комфорт: Климатроник, Кожен салон, Ел.стъкла, Ел.огледала,
+    Ел.седалки, Подгряване на седалки, Стерео уредба, Алуминиеви
+    джанти, Мултифункционален волан Сигурност: ABS, ESP, Airbag,
+    Халогенни фарове, Аларма, Имобилайзер, Центр. заключване Друго:
+    Автопилот, Серво управление, Бордови компютър`,
   },
 ];
 
 export const navLinks = [
   {
     text: "Home",
-    path: "home",
+    path: "ads",
   },
   {
     text: "Favourites",
@@ -215,7 +64,7 @@ export const navLinks = [
     text: "Profile",
     path: "profile",
   },
-]
+];
 
 export function getAd(id) {
   const ad = ads.find((ad) => ad.id == id);
