@@ -31,33 +31,33 @@ const CardHeader = ({ children, className }) => (
   <header className={`${className ? className : ""}`}>{children}</header>
 );
 
-export default function CarCard({ id, img, name, price, info }) {
+export default function CarCard({ ad }) {
+  const readyImg = getImageUrl(ad.imgLinks[0].img)
   return (
     <CardBody>
-      <Link to={`http://localhost:5173/newVehSells/Ads/VehView/${id}`}>
+      <Link to={`http://localhost:5173/newVehSells/Ads/VehView/${ad.id}`}>
         <CardContent>
           <CardImg>
-            {img ? (
-              
-              <img src={getImageUrl(img)} className=" w-full h-full" />
+            {readyImg ? (
+              <img src={readyImg} className=" w-full h-full" />
             ) : (
               "Loading..."
             )}
           </CardImg>
           <CardHeader>
             <h2 className=" text-center text-lg my-2">
-              <strong>{name}</strong>
+              <strong>{ad.name}</strong>
             </h2>
           </CardHeader>
           <div className="flex justify-end">
             <Button className="bg-green-500 border-[1px] border-solid border-green-100">
-              {price}$
+              {ad.price}$
             </Button>
           </div>
-          <DataTable info={info} className="max-h-[25%] overflow-hidden" />
+          <DataTable info={ad.info} className="max-h-[25%] overflow-hidden" />
           <footer className="mt-5">
             <p className=" text-xs text-gray-500">
-              <strong>Boris Foster</strong> from <strong>One Shot</strong>
+              <strong>{ad.seller}</strong> from <strong>{ad.sellerLocation}</strong>
             </p>
           </footer>
         </CardContent>

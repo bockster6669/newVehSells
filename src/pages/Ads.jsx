@@ -3,11 +3,8 @@ import CarCard from "@/components/CarCard";
 import Button from "@/components/Button";
 import { BsFillPlusCircleFill } from "react-icons/bs";
 import { Link, redirect, useActionData, useLoaderData } from "react-router-dom";
+import { getAllAds } from "@/ad";
 export default function Ads() {
-  // const data = useActionData();
-  // if (data) {
-  //   console.log(data);
-  // }
   const data = useLoaderData();
   return (
     <div>
@@ -21,16 +18,7 @@ export default function Ads() {
       </div>
       <div className="flex flex-wrap items-center justify-center box-border overflow-auto  p-4 gap-4">
         {data.carList.map((car) => {
-          return (
-            <CarCard
-              key={car.id}
-              id={car.id}
-              img={car.imgLinks[0].img}
-              name={car.name}
-              price={car.price}
-              info={car.info}
-            />
-          );
+          return <CarCard key={car.id} ad={car} />;
         })}
       </div>
       <Link to="create">
@@ -41,9 +29,7 @@ export default function Ads() {
 }
 
 export async function loader({ params }) {
-  const carList = await fetch("http://localhost:4000/carList").then((resp) =>
-    resp.json()
-  );
+  const carList = await getAllAds();
   return { carList };
 }
 

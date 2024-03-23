@@ -10,11 +10,7 @@ function MyAds() {
         return (
           <CarCard
             key={car.id}
-            id={car.id}
-            img={car.imgLinks[0].img}
-            name={car.name}
-            price={car.price}
-            info={car.info}
+            ad={car}
           />
         );
       })}
