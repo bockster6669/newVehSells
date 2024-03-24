@@ -1,6 +1,6 @@
 import React from "react";
-import { Form } from "react-router-dom";
-
+import { Form, redirect } from "react-router-dom";
+import { createNewAd } from "@/ad";
 export default function CreateAd() {
   return (
     <Form method="POST" className="flex flex-col">
@@ -48,22 +48,6 @@ export default function CreateAd() {
 export async function action({ request }) {
   const formData = await request.formData();
   const newAd = Object.fromEntries(formData);
-
-
-  fetch("http://localhost:4000/carList", {
-    method: "POST",
-    body: JSON.stringify({
-      id: "4",
-      name: newAd.name,
-      price: newAd.price,
-      info: { Type: newAd.type, Year: newAd.year },
-      imgLinks: [{ id: "1", img: "airtug.png" }],
-      date: newAd.date,
-      views: newAd.views,
-      text: newAd.text,
-      sellerLocation: newAd.sellerLocation,
-      extras: newAd.extras,
-    }),
-  });
+  createNewAd(newAd);
   return redirect("/newVehSells/ads/");
 }

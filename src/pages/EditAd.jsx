@@ -1,5 +1,6 @@
+import { getMyAdById, updateAd } from "@/ad";
 import React from "react";
-import { Form, redirect, useLoaderData, useParams } from "react-router-dom";
+import { Form, redirect, useLoaderData } from "react-router-dom";
 
 export default function EditAd() {
   const data = useLoaderData();
@@ -53,36 +54,12 @@ export default function EditAd() {
 export async function action({ request, params }) {
   const formData = await request.formData();
   const newAd = Object.fromEntries(formData);
-  const id = params.adId;
-
-  console.log("id =", id);
-  fetch(`http://localhost:4000/myads/${id}`, {
-    method: "PUT",
-    body: JSON.stringify({
-      id: id,
-      name: newAd.name,
-      price: newAd.price,
-      info: { Type: newAd.type, Year: newAd.year },
-      imgLinks: [{ id: "1", img: "airtug.png" }],
-      date: newAd.date,
-      views: newAd.views,
-      text: newAd.text,
-      sellerLocation: newAd.sellerLocation,
-      extras: newAd.extras,
-    }),
-  });
-
+  newAd.id = params.adId;
+  updateAd(newAd);
   return redirect("http://localhost:5173/newVehSells/ads");
 }
 
 export async function loader({ params }) {
-  let data;
-  try {
-    data = await fetch(`http://localhost:4000/myads/${params.adId}`).then(
-      (response) => response.json()
-    );
-  } catch (err) {
-    throw new Error(err);
-  }
+  let data = await getMyAdById(params.adId);
   return data;
 }

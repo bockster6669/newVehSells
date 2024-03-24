@@ -8,7 +8,7 @@ function Root() {
           {navLinks.map((obj) => (
             <li key={obj.path} className="flex">
               <NavLink
-                to={`${obj.path ?? ""}`}
+                to={`${obj.path}`}
                 className={
                   ({ isActive, isPending }) =>
                     "px-4 py-2 rounded-sm text-xl flex-1" + // Apply general padding first

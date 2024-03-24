@@ -12,7 +12,7 @@ import { getImageUrl } from "@/utils/image-util";
 import { Separator } from "@/components/ui/separator";
 import Button from "@/components/Button";
 import { useNavigate } from "react-router-dom";
-import { getAdById } from "@/ad";
+import { getAdById, getMyAdById } from "@/ad";
 
 export default function VehView() {
   const navigate = useNavigate();
@@ -127,7 +127,12 @@ export default function VehView() {
 }
 
 export async function loader({ params }) {
-  const ad = await getAdById(params.adId);
+  let ad;
   const isMyAdsUrl = location.pathname.startsWith("/newVehSells/myads");
+  if(isMyAdsUrl) {
+    ad = await getMyAdById(params.adId)
+  } else {
+    ad = await getAdById(params.adId)
+  }
   return { ad, isMyAdsUrl };
 }

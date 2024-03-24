@@ -17,10 +17,13 @@ import VehView from "./pages/VehView.jsx";
 import { loader as VehViewLoader } from "./pages/VehView.jsx";
 
 import CreateAd from "./pages/CreateAd";
-import {action as CreateAdAction } from "./pages/CreateAd.jsx";
+import { action as CreateAdAction } from "./pages/CreateAd.jsx";
 
 import EditAd from "./pages/EditAd";
-import { loader as EditAdLoader, action as EditAdAction } from "./pages/EditAd.jsx";
+import {
+  loader as EditAdLoader,
+  action as EditAdAction,
+} from "./pages/EditAd.jsx";
 
 import MyAds from "./pages/MyAds.jsx";
 import { loader as MyAdsLoader } from "./pages/MyAds.jsx";
@@ -53,7 +56,7 @@ const router = createBrowserRouter([
             loader: MyAdsLoader,
           },
           {
-            path: "myads?/vehView/:adId",
+            path: "ads?/myads?/VehView/:adId",
             element: <VehView />,
             loader: VehViewLoader,
           },

@@ -79,14 +79,35 @@
       "text": "asd",
       "sellerLocation": "asd",
       "extras": "as"
-    }
-  ],
-  "myads": [
+    },
     {
       "id": "4",
-      "name": "kura mi qnko",
+      "name": "bum",
+      "price": "1200",
+      "info": {
+        "Type": "Cross",
+        "Year": "2008"
+      },
+      "imgLinks": [
+        {
+          "id": "1",
+          "img": "airtug.png"
+        }
+      ],
+      "date": "1423.123",
+      "views": "200",
+      "text": "sdf",
+      "sellerLocation": "sdf",
+      "extras": "sd"
+    },
+    {
+      "id": "4",
+      "name": "new",
       "price": "123",
-      "info": {},
+      "info": {
+        "Type": "af",
+        "Year": "123"
+      },
       "imgLinks": [
         {
           "id": "1",
@@ -97,7 +118,29 @@
       "views": "123",
       "text": "asd",
       "sellerLocation": "asd",
-      "extras": "as"
+      "extras": "asd"
+    }
+  ],
+  "myads": [
+    {
+      "id": "4",
+      "name": "new",
+      "price": "123",
+      "info": {
+        "Type": "af",
+        "Year": "123"
+      },
+      "imgLinks": [
+        {
+          "id": "1",
+          "img": "airtug.png"
+        }
+      ],
+      "date": "123",
+      "views": "123",
+      "text": "asd",
+      "sellerLocation": "asd",
+      "extras": "asd"
     }
   ]
 }

@@ -19,7 +19,7 @@ export default function Ads() {
       </div>
       <div className="flex flex-wrap items-center justify-center box-border overflow-auto  p-4 gap-4">
         {data.carList.map((car) => {
-          return <CarCard key={car.id} ad={car} url="VehView"/>;
+          return <CarCard key={car.id} ad={car} url="ads/VehView" />;
         })}
       </div>
       <Link to="create">
