@@ -11,6 +11,7 @@ function MyAds() {
           <CarCard
             key={car.id}
             ad={car}
+            url = 'myads/VehView'
           />
         );
       })}

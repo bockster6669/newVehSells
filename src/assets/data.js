@@ -70,6 +70,19 @@ export const navLinks = [
   },
 ];
 
+export const obj = {
+  "id":null,
+  "name":null,
+  "price":null,
+  "info":null,
+  "imgLinks":null,
+  "date":null,
+  "views":null,
+  "text":null,
+  "sellerLocation":null,
+  "extras":null
+}
+
 export function getAd(id) {
   const ad = ads.find((ad) => ad.id == id);
   return ad;

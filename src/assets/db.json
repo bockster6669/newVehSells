@@ -65,12 +65,9 @@
     },
     {
       "id": "4",
-      "name": "aasdzxc",
+      "name": "tva ne e moe",
       "price": "123",
-      "info": {
-        "Type": "assd",
-        "Year": "asd"
-      },
+      "info": {},
       "imgLinks": [
         {
           "id": "1",
@@ -80,20 +77,16 @@
       "date": "123",
       "views": "123",
       "text": "asd",
-      "seller": "Bobkata",
       "sellerLocation": "asd",
       "extras": "as"
     }
   ],
   "myads": [
     {
-      "id": "1",
-      "name": "tva e moe",
+      "id": "4",
+      "name": "kura mi qnko",
       "price": "123",
-      "info": {
-        "Type": "assd",
-        "Year": "asd"
-      },
+      "info": {},
       "imgLinks": [
         {
           "id": "1",
@@ -103,7 +96,6 @@
       "date": "123",
       "views": "123",
       "text": "asd",
-      "seller": "Bobkata",
       "sellerLocation": "asd",
       "extras": "as"
     }

@@ -1,7 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { navLinks } from "./assets/data";
-import { createElement } from "react";
-import { BsFillHouseFill } from "react-icons/bs";
 function Root() {
   return (
     <div className="w-[90vw] h-[90vh] bg-slate-200 rounded-md overflow-hidden shadow-xl flex">

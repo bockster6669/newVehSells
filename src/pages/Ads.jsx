@@ -2,8 +2,9 @@ import React from "react";
 import CarCard from "@/components/CarCard";
 import Button from "@/components/Button";
 import { BsFillPlusCircleFill } from "react-icons/bs";
-import { Link, redirect, useActionData, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { getAllAds } from "@/ad";
+
 export default function Ads() {
   const data = useLoaderData();
   return (
@@ -18,7 +19,7 @@ export default function Ads() {
       </div>
       <div className="flex flex-wrap items-center justify-center box-border overflow-auto  p-4 gap-4">
         {data.carList.map((car) => {
-          return <CarCard key={car.id} ad={car} />;
+          return <CarCard key={car.id} ad={car} url="VehView"/>;
         })}
       </div>
       <Link to="create">
@@ -31,45 +32,4 @@ export default function Ads() {
 export async function loader({ params }) {
   const carList = await getAllAds();
   return { carList };
-}
-
-export async function action({ request }) {
-  const formData = await request.formData();
-  const newAd = Object.fromEntries(formData);
-
-  switch (request.method) {
-    case "POST":
-      fetch("http://localhost:4000/carList", {
-        method: "POST",
-        body: JSON.stringify({
-          id: "4",
-          name: newAd.name,
-          price: newAd.price,
-          info: { Type: newAd.type, Year: newAd.year },
-          imgLinks: [{ id: "1", img: "airtug.png" }],
-          date: newAd.date,
-          views: newAd.views,
-          text: newAd.text,
-          sellerLocation: newAd.sellerLocation,
-          extras: newAd.extras,
-        }),
-      });
-    case "PUT":
-      fetch("http://localhost:4000/carList/4", {
-        method: "PUT",
-        body: JSON.stringify({
-          id: "4",
-          name: newAd.name,
-          price: newAd.price,
-          info: { Type: newAd.type, Year: newAd.year },
-          imgLinks: [{ id: "1", img: "airtug.png" }],
-          date: newAd.date,
-          views: newAd.views,
-          text: newAd.text,
-          sellerLocation: newAd.sellerLocation,
-          extras: newAd.extras,
-        }),
-      });
-  }
-  return redirect("/newVehSells/ads/vehView/1");
 }

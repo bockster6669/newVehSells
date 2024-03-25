@@ -80,7 +80,8 @@ export default function VehView() {
               {data.isMyAdsUrl ? (
                 <>
                   <Link
-                    to={`http://localhost:5173/newVehSells/Ads/create/${ad.id}`}
+                  //Ads/edit/:adId
+                    to={`http://localhost:5173/newVehSells/myads/edit/${ad.id}`}
                   >
                     <Button className="bg-[#06b6d4] rounded-sm p-4 text-xl gap-2">
                       <BsChatDotsFill />
