@@ -1,4 +1,5 @@
 export async function getAdById(id) {
+  await fakeNetwork();
   const data = await fetch("http://localhost:4000/carList/" + id);
   const ad = await data.json();
   return ad;
@@ -59,4 +60,20 @@ export async function getMyAdById(id) {
   return await fetch(`http://localhost:4000/myads/${id}`).then((response) =>
     response.json()
   );
+}
+
+let fakeCache = {};
+async function fakeNetwork(key) {
+  if (!key) {
+    fakeCache = {};
+  }
+
+  if (fakeCache[key]) {
+    return;
+  }
+
+  fakeCache[key] = true;
+  return new Promise(res => {
+    setTimeout(res, Math.random() * 2000);
+  });
 }

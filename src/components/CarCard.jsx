@@ -11,7 +11,7 @@ const CardContent = ({ children, className }) => (
 );
 const CardBody = ({ children, className }) => (
   <div
-    className={`box-border p-4 w-[200px] max-h-[320px] bg-slate-300 rounded-md overflow-hidden shadow-lg border-[1px] border-solid border-green-100l ${
+    className={`box-border p-4 w-[200px] h-[300px] max-h-[320px] bg-slate-300 rounded-md overflow-hidden shadow-lg border-[1px] border-solid border-green-100l ${
       className ? className : ""
     }`}
   >

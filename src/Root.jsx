@@ -1,6 +1,9 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigation } from "react-router-dom";
 import { navLinks } from "./assets/data";
+import Header from "./components/Header";
+
 function Root() {
+  const navigation = useNavigation();
   return (
     <div className="w-[90vw] h-[90vh] bg-slate-200 rounded-md overflow-hidden shadow-xl flex">
       <nav className=" bg-[#0c0a09] text-lg text-cyan-50 border-box p-2 w-[200px]">
@@ -12,21 +15,25 @@ function Root() {
                 className={
                   ({ isActive, isPending }) =>
                     "px-4 py-2 rounded-sm text-xl flex-1" + // Apply general padding first
-                    (isActive ? " active" : "") + // Add "active" class if active
-                    (isPending ? " pending" : "") // Add "pending" class if pending
+                    (isActive ? " active" : "") // Add "active" class if active
+                  // (isPending ? " pending" : "") // Add "pending" class if pending
                 }
               >
-                <div className="flex gap-4">{obj.text}</div>
+                <div className="flex items-center">
+                  {obj.text}
+                  {/* {navigation.state == "loading" ? (
+                    <div className="loader"></div>
+                  ) : null} */}
+                </div>
               </NavLink>
             </li>
           ))}
         </ul>
       </nav>
-      <main className={"flex-1 overflow-auto relative"}>
-        <div className=" sticky top-0 z-10 bg-orange-500 flex justify-start text-2xl text-white box-border p-4 font-roboto font-bold">
-          Cars.bg
-        </div>
+      <main className={`overflow-auto relative flex-1 `}>
+        <Header />
         <Outlet />
+        {navigation.state == "loading" ? <div className="loader"></div> : ""}
       </main>
     </div>
   );
