@@ -35,7 +35,7 @@ export default function CarCard({ ad, url }) {
   const readyImg = getImageUrl(ad.imgLinks[0].img)
   return (
     <CardBody>
-      <Link to={`http://localhost:5173/newVehSells/${url}/${ad.id}`}>
+      <Link to={`http://localhost:5173/${url}/${ad.id}`}>
         <CardContent>
           <CardImg>
             {readyImg ? (

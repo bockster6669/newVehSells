@@ -30,7 +30,7 @@ import { loader as MyAdsLoader } from "./pages/MyAds.jsx";
 
 const router = createBrowserRouter([
   {
-    path: "/newVehSells",
+    path: "/",
     element: <Root />,
     errorElement: <Error />,
     children: [

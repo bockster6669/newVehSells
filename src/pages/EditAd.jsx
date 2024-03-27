@@ -56,7 +56,7 @@ export async function action({ request, params }) {
   const newAd = Object.fromEntries(formData);
   newAd.id = params.adId;
   updateAd(newAd);
-  return redirect("http://localhost:5173/newVehSells/ads");
+  return redirect("http://localhost:5173/ads");
 }
 
 export async function loader({ params }) {

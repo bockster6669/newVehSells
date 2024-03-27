@@ -49,5 +49,5 @@ export async function action({ request }) {
   const formData = await request.formData();
   const newAd = Object.fromEntries(formData);
   createNewAd(newAd);
-  return redirect("/newVehSells/ads/");
+  return redirect("/ads/");
 }

@@ -30,10 +30,10 @@ function Root() {
           ))}
         </ul>
       </nav>
-      <main className={`overflow-auto relative flex-1 `}>
+      <main className={`overflow-auto relative flex-1 ${navigation.state == "loading" ? "loading" : null}`}>
         <Header />
         <Outlet />
-        {navigation.state == "loading" ? <div className="loader"></div> : ""}
+        {/* {navigation.state == "loading" ? <div className="loader"></div */}
       </main>
     </div>
   );

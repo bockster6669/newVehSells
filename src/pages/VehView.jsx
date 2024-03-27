@@ -28,7 +28,7 @@ export default function VehView() {
         throw new Error(`Error deleting data: ${response.statusText}`);
       }
 
-      navigate("/newVehSells/ads");
+      navigate("/ads");
     } catch (error) {}
   };
 
@@ -81,7 +81,7 @@ export default function VehView() {
                 <>
                   <Link
                   //Ads/edit/:adId
-                    to={`http://localhost:5173/newVehSells/myads/edit/${ad.id}`}
+                    to={`http://localhost:5173/myads/edit/${ad.id}`}
                   >
                     <Button className="bg-[#06b6d4] rounded-sm p-4 text-xl gap-2">
                       <BsChatDotsFill />
@@ -128,7 +128,7 @@ export default function VehView() {
 
 export async function loader({ params }) {
   let ad;
-  const isMyAdsUrl = location.pathname.startsWith("/newVehSells/myads");
+  const isMyAdsUrl = location.pathname.startsWith("/myads");
   if(isMyAdsUrl) {
     ad = await getMyAdById(params.adId)
   } else {

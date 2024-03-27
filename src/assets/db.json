@@ -63,25 +63,6 @@
       "sellerLocation": "asd",
       "extras": "as"
     }
-   
   ],
-  "myads": [
-    {
-      "id": "4",
-      "name": "new",
-      "price": "123",
-      "info": {},
-      "imgLinks": [
-        {
-          "id": "1",
-          "img": "airtug.png"
-        }
-      ],
-      "date": "123",
-      "views": "123",
-      "text": "asd",
-      "sellerLocation": "asd",
-      "extras": "asd"
-    }
-  ]
+  "myads": []
 }
