@@ -1,12 +1,12 @@
 {
   "carList": [
     {
-      "id": "1",
-      "name": "aasd324234",
-      "price": "123",
+      "id": "fc47",
+      "name": "Turismo",
+      "price": 10000,
       "info": {
-        "Type": "assd",
-        "Year": "asd"
+        "Type": "car",
+        "Year": "1203"
       },
       "imgLinks": [
         {
@@ -17,52 +17,70 @@
       "date": "123",
       "views": "123",
       "text": "asd",
-      "seller": "Bobkata",
       "sellerLocation": "asd",
-      "extras": "as"
+      "extras": "asd"
     },
     {
-      "id": "2",
-      "name": "aasdz",
-      "price": "123",
+      "id": "43ea",
+      "name": "Honda civic",
+      "price": 100,
       "info": {
-        "Type": "assd",
-        "Year": "asd"
+        "Type": "car",
+        "Year": "123"
       },
       "imgLinks": [
         {
-          "id": 1,
+          "id": "1",
           "img": "airtug.png"
         }
       ],
       "date": "123",
       "views": "123",
-      "text": "asd",
-      "seller": "Bobkata",
-      "sellerLocation": "asd",
-      "extras": "as"
-    },
-    {
-      "id": "3",
-      "name": "Madzerati",
-      "price": "123",
-      "info": {
-        "Type": "assd",
-        "Year": "asd"
-      },
-      "imgLinks": [
-        {
-          "id": 1,
-          "img": "airtug.png"
-        }
-      ],
-      "date": "123",
-      "views": "123",
-      "text": "asd",
-      "seller": "Bobkata",
-      "sellerLocation": "asd",
-      "extras": "as"
+      "text": "123",
+      "sellerLocation": "123",
+      "extras": "123"
     }
   ],
-  "myads": []
+  "myads": [
+    {
+      "id": "6135",
+      "name": "Turismo",
+      "price": 10000,
+      "info": {
+        "Type": "car",
+        "Year": "1203"
+      },
+      "imgLinks": [
+        {
+          "id": "1",
+          "img": "airtug.png"
+        }
+      ],
+      "date": "123",
+      "views": "123",
+      "text": "asd",
+      "sellerLocation": "asd",
+      "extras": "asd"
+    },
+    {
+      "id": "0f58",
+      "name": "Honda civic",
+      "price": 100,
+      "info": {
+        "Type": "car",
+        "Year": "123"
+      },
+      "imgLinks": [
+        {
+          "id": "1",
+          "img": "airtug.png"
+        }
+      ],
+      "date": "123",
+      "views": "123",
+      "text": "123",
+      "sellerLocation": "123",
+      "extras": "123"
+    }
+  ]
 }

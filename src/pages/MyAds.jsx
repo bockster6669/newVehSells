@@ -1,15 +1,21 @@
-import React from "react";
+import React, { Suspense } from "react";
 import CarCard from "@/components/CarCard";
-import { useLoaderData } from "react-router-dom";
+import { Await, defer, useLoaderData } from "react-router-dom";
 import { getMyAds } from "@/ad";
 function MyAds() {
   const carList = useLoaderData();
 
   return (
     <div className="flex flex-wrap items-center justify-center box-border overflow-auto  p-4 gap-4">
-      {carList.map((car) => {
-        return <CarCard key={car.id} ad={car} url={`myads/VehView`} />;
-      })}
+      <Suspense fallback={<p>Loading...</p>}>
+        <Await resolve={carList.myAds} errorElement="Error has acuured">
+          {(myAds) =>
+            myAds.map((car) => {
+              return <CarCard key={car.id} ad={car} url={`myads/VehView`} />;
+            })
+          }
+        </Await>
+      </Suspense>
     </div>
   );
 }
@@ -17,6 +23,5 @@ function MyAds() {
 export default MyAds;
 
 export async function loader() {
-  const carList = await getMyAds();
-  return carList;
+  return defer({ myAds: getMyAds() });
 }

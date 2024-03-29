@@ -1,10 +1,10 @@
 import React from "react";
 import CarCard from "@/components/CarCard";
-import Button from "@/components/Button";
 import { BsFillPlusCircleFill } from "react-icons/bs";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, Form, useLocation } from "react-router-dom";
 import { getAllAds } from "@/ad";
 import { Button as SCNButton } from "@/components/ui/button";
+import { useEffect } from "react";
 import {
   Dialog,
   DialogClose,
@@ -17,17 +17,27 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { useFetcher } from "react-router-dom";
 export default function Ads() {
   const data = useLoaderData();
+  const fetcher = useFetcher();
+  const location = useLocation();
+  const [isSubmited, setIsSubmited] = React.useState(false);
+  useEffect(() => {
+    if (isSubmited) {
+      console.log("fetcher = ", fetcher);
+    }
+  }, [fetcher]);
+  console.log("location=", location);
   return (
     <div>
       <div className=" bg-blue-100 box-border p-2 flex flex-wrap items-center justify-center">
         <div className="flex gap-2">
           <Dialog>
             <DialogTrigger asChild>
-              <SCNButton className=' bg-black text-white'>price</SCNButton>
+              <SCNButton className=" bg-black text-white">price</SCNButton>
             </DialogTrigger>
-            <DialogContent className=' bg-blue-950 text-white'>
+            <DialogContent className=" bg-blue-950 text-white">
               <DialogHeader>
                 <DialogTitle>budget</DialogTitle>
                 <DialogDescription>
@@ -36,20 +46,22 @@ export default function Ads() {
               </DialogHeader>
               <div className="flex items-center space-x-2">
                 <div className="grid flex-1 gap-2">
-                  <Label htmlFor="link" className="sr-only">
-                    Price
-                  </Label>
-                  <Input
-                    id="price"
-                  />
+                  <Form>
+                    <input
+                      placeholder="price"
+                      name="price"
+                      className=" bg-black"
+                    ></input>
+                    <button type="submit">Submit</button>
+                  </Form>
                 </div>
-                <SCNButton type="submit" size="sm" className="px-3 bg-green-400 text-white text-lg">
-                  Submit
-                </SCNButton>
               </div>
               <DialogFooter className="sm:justify-start">
                 <DialogClose asChild>
-                  <SCNButton type="button" className='bg-red-600 text-white text-lg'>
+                  <SCNButton
+                    type="button"
+                    className="bg-red-600 text-white text-lg"
+                  >
                     Close
                   </SCNButton>
                 </DialogClose>
@@ -70,7 +82,18 @@ export default function Ads() {
   );
 }
 
-export async function loader({ params }) {
-  const carList = await getAllAds();
-  return { carList };
+export async function loader({ params, request }) {
+  let url = new URL(request.url);
+  let price = url.searchParams.get("price");
+
+  if (price) {
+    const carList = await fetch(
+      `http://localhost:4000/carList/?price_lt=${price}`
+    ).then((r) => r.json());
+    return { carList };
+  } else {
+    const data = await fetch("http://localhost:4000/carList");
+    const carList = await data.json();
+    return { carList };
+  }
 }

@@ -11,11 +11,10 @@ export async function getAllAds() {
   return ads;
 }
 
-export function createNewAd(newAd) {
+export async function createNewAd(newAd) {
   const obj = JSON.stringify({
-    id: "4",
     name: newAd.name,
-    price: newAd.price,
+    price: parseInt(newAd.price),
     info: { Type: newAd.type, Year: newAd.year },
     imgLinks: [{ id: "1", img: "airtug.png" }],
     date: newAd.date,
@@ -24,6 +23,7 @@ export function createNewAd(newAd) {
     sellerLocation: newAd.sellerLocation,
     extras: newAd.extras,
   });
+  await fakeNetwork(2000);
   fetch("http://localhost:4000/carList", {
     method: "POST",
     body: obj,
@@ -50,9 +50,12 @@ export function updateAd(ad) {
       extras: ad.extras,
     }),
   });
+
+
 }
 
 export async function getMyAds() {
+  await fakeNetwork(2000);
   return await fetch("http://localhost:4000/myads").then((resp) => resp.json());
 }
 
@@ -62,18 +65,13 @@ export async function getMyAdById(id) {
   );
 }
 
-let fakeCache = {};
-async function fakeNetwork(key) {
-  if (!key) {
-    fakeCache = {};
-  }
-
-  if (fakeCache[key]) {
-    return;
-  }
-
-  fakeCache[key] = true;
-  return new Promise(res => {
-    setTimeout(res, Math.random() * 2000);
+async function fakeNetwork(time) {
+  return new Promise((res) => {
+    setTimeout(res, time);
   });
+}
+
+export async function filterPrice(price) {
+  const data = await fetch("http://localhost:4000/carList/price<3000");
+  return await data.json();
 }

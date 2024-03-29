@@ -1,7 +1,8 @@
 import React from "react";
-import { Form, redirect } from "react-router-dom";
+import { Form, redirect, useNavigation } from "react-router-dom";
 import { createNewAd } from "@/ad";
 export default function CreateAd() {
+  const navigation = useNavigation();
   return (
     <Form method="POST" className="flex flex-col">
       <label>Name:</label>
@@ -40,7 +41,7 @@ export default function CreateAd() {
       <input type="text" name="extras" />
       <br></br>
 
-      <button>Submit</button>
+      <button disabled={navigation.state === "submitting"}>Submit</button>
     </Form>
   );
 }
@@ -48,6 +49,6 @@ export default function CreateAd() {
 export async function action({ request }) {
   const formData = await request.formData();
   const newAd = Object.fromEntries(formData);
-  createNewAd(newAd);
+  await createNewAd(newAd);
   return redirect("/ads/");
 }
