@@ -20,24 +20,16 @@ import { Input } from "@/components/ui/input";
 import { useFetcher } from "react-router-dom";
 export default function Ads() {
   const data = useLoaderData();
-  const fetcher = useFetcher();
-  const location = useLocation();
-  const [isSubmited, setIsSubmited] = React.useState(false);
-  useEffect(() => {
-    if (isSubmited) {
-      console.log("fetcher = ", fetcher);
-    }
-  }, [fetcher]);
-  console.log("location=", location);
+
   return (
     <div>
       <div className=" bg-blue-100 box-border p-2 flex flex-wrap items-center justify-center">
         <div className="flex gap-2">
           <Dialog>
             <DialogTrigger asChild>
-              <SCNButton className=" bg-black text-white">price</SCNButton>
+              <SCNButton className=" bg-gray-700 text-white ">price</SCNButton>
             </DialogTrigger>
-            <DialogContent className=" bg-blue-950 text-white">
+            <DialogContent className="bg-[#f5f5f5] ">
               <DialogHeader>
                 <DialogTitle>budget</DialogTitle>
                 <DialogDescription>
@@ -48,11 +40,23 @@ export default function Ads() {
                 <div className="grid flex-1 gap-2">
                   <Form>
                     <input
-                      placeholder="price"
-                      name="price"
-                      className=" bg-black"
+                      placeholder="priceOf"
+                      name="priceOf"
+                      className=" "
+                      defaultValue={0}
                     ></input>
-                    <button type="submit">Submit</button>
+                    <input
+                      placeholder="priceOn"
+                      name="priceOn"
+                      className=""
+                      defaultValue={99999999}
+                    ></input>
+                    <button
+                      type="submit"
+                      className=" rounded-sm box-border bg-green-600 text-white p-4"
+                    >
+                      Submit
+                    </button>
                   </Form>
                 </div>
               </div>
@@ -84,11 +88,25 @@ export default function Ads() {
 
 export async function loader({ params, request }) {
   let url = new URL(request.url);
-  let price = url.searchParams.get("price");
+  let priceOf = url.searchParams.get("priceOf");
+  let priceOn = url.searchParams.get("priceOn");
+  
+  fetch(`http://localhost:4000/carList/?price_lte=${priceOn}`)
 
-  if (price) {
+  if (!priceOf && priceOn) {
     const carList = await fetch(
-      `http://localhost:4000/carList/?price_lt=${price}`
+      `http://localhost:4000/carList/?price_lte=${priceOn}`
+    ).then((r) => r.json());
+    return { carList };
+  } else if (!priceOn && priceOf) {
+    const carList = await fetch(
+      `http://localhost:4000/carList/?price_gte=${priceOf}`
+    ).then((r) => r.json());
+    return { carList };
+  } else if (priceOn && priceOf) {
+    console.log("two values");
+    const carList = await fetch(
+      `http://localhost:4000/carList/?price_gte=${priceOf}&price_lte=${priceOn}`
     ).then((r) => r.json());
     return { carList };
   } else {
