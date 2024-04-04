@@ -56,7 +56,7 @@ export function updateAd(ad) {
 
 export async function getMyAds() {
   await fakeNetwork(2000);
-  return await fetch("http://localhost:4000/myads").then((resp) => resp.json());
+  return fetch("http://localhost:4000/myads").then((resp) => resp.json());
 }
 
 export async function getMyAdById(id) {

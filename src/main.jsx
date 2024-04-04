@@ -28,6 +28,9 @@ import {
 import MyAds from "./pages/MyAds.jsx";
 import { loader as MyAdsLoader } from "./pages/MyAds.jsx";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+const queryClient = new QueryClient({});
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -53,7 +56,7 @@ const router = createBrowserRouter([
           {
             path: "myads",
             element: <MyAds />,
-            loader: MyAdsLoader,
+            // loader: MyAdsLoader,
           },
           {
             path: "ads?/myads?/VehView/:adId",
@@ -79,6 +82,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   </React.StrictMode>
 );

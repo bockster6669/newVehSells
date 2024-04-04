@@ -2,6 +2,7 @@ import { NavLink, Outlet, useNavigation } from "react-router-dom";
 import { navLinks } from "./assets/data";
 import Header from "./components/Header";
 
+
 function Root() {
   const navigation = useNavigation();
   return (
@@ -12,28 +13,24 @@ function Root() {
             <li key={obj.path} className="flex">
               <NavLink
                 to={`${obj.path}`}
-                className={
-                  ({ isActive, isPending }) =>
-                    "px-4 py-2 rounded-sm text-xl flex-1" + // Apply general padding first
-                    (isActive ? " active" : "") // Add "active" class if active
-                  // (isPending ? " pending" : "") // Add "pending" class if pending
+                className={({ isActive, isPending }) =>
+                  "px-4 py-2 rounded-sm text-xl flex-1" +
+                  (isActive ? " active" : "")
                 }
               >
-                <div className="flex items-center">
-                  {obj.text}
-                  {/* {navigation.state == "loading" ? (
-                    <div className="loader"></div>
-                  ) : null} */}
-                </div>
+                <div className="flex items-center">{obj.text}</div>
               </NavLink>
             </li>
           ))}
         </ul>
       </nav>
-      <main className={`overflow-auto relative flex-1 ${navigation.state == "loading" ? "loading" : null}`}>
+      <main
+        className={`overflow-auto relative flex-1 ${
+          navigation.state == "loading" ? "loading" : null
+        }`}
+      >
         <Header />
         <Outlet />
-        {/* {navigation.state == "loading" ? <div className="loader"></div */}
       </main>
     </div>
   );
