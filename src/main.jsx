@@ -7,7 +7,6 @@ import Root from "./Root.jsx";
 import Error from "./pages/Error";
 
 import Ads from "./pages/Ads.jsx";
-import { loader as AdsLoader } from "./pages/Ads.jsx";
 
 import Favorites from "./pages/Favorites.jsx";
 
@@ -26,7 +25,6 @@ import {
 } from "./pages/EditAd.jsx";
 
 import MyAds from "./pages/MyAds.jsx";
-import { loader as MyAdsLoader } from "./pages/MyAds.jsx";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const queryClient = new QueryClient({});
@@ -43,7 +41,6 @@ const router = createBrowserRouter([
           {
             path: "ads",
             element: <Ads />,
-            loader: AdsLoader,
           },
           {
             path: "fav",
@@ -56,7 +53,6 @@ const router = createBrowserRouter([
           {
             path: "myads",
             element: <MyAds />,
-            // loader: MyAdsLoader,
           },
           {
             path: "ads?/myads?/VehView/:adId",

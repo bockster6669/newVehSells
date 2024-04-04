@@ -5,6 +5,10 @@ import Header from "./components/Header";
 
 function Root() {
   const navigation = useNavigation();
+  
+  if(navigation.state == "loading") {
+    console.log('nav=', navigation.state)
+  } 
   return (
     <div className="w-[90vw] h-[90vh] bg-slate-200 rounded-md overflow-hidden shadow-xl flex">
       <nav className=" bg-[#0c0a09] text-lg text-cyan-50 border-box p-2 w-[200px]">
@@ -26,7 +30,7 @@ function Root() {
       </nav>
       <main
         className={`overflow-auto relative flex-1 ${
-          navigation.state == "loading" ? "loading" : null
+          navigation.state == "loading" ? "loading" : ""
         }`}
       >
         <Header />

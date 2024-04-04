@@ -1,10 +1,8 @@
 import React from "react";
 import CarCard from "@/components/CarCard";
 import { BsFillPlusCircleFill } from "react-icons/bs";
-import { Link, useLoaderData, Form, useLocation } from "react-router-dom";
-import { getAllAds } from "@/ad";
+import { Link, Form } from "react-router-dom";
 import { Button as SCNButton } from "@/components/ui/button";
-import { useEffect } from "react";
 import {
   Dialog,
   DialogClose,
@@ -15,11 +13,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { useFetcher } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { getAdsByPrice } from "@/ad";
 export default function Ads() {
-  const data = useLoaderData();
+  const { data, isLoading } = useQuery({
+    queryKey: ["ads"],
+    queryFn: () => getAdsByPrice(),
+  });
+
+  if (isLoading) return <div>Loading data...</div>;
 
   return (
     <div>
@@ -75,7 +77,7 @@ export default function Ads() {
         </div>
       </div>
       <div className="flex flex-wrap items-center justify-center box-border overflow-auto  p-4 gap-4">
-        {data.carList.map((car) => {
+        {data.map((car) => {
           return <CarCard key={car.id} ad={car} url="ads/VehView" />;
         })}
       </div>
@@ -84,34 +86,4 @@ export default function Ads() {
       </Link>
     </div>
   );
-}
-
-export async function loader({ params, request }) {
-  let url = new URL(request.url);
-  let priceOf = url.searchParams.get("priceOf");
-  let priceOn = url.searchParams.get("priceOn");
-  
-  fetch(`http://localhost:4000/carList/?price_lte=${priceOn}`)
-
-  if (!priceOf && priceOn) {
-    const carList = await fetch(
-      `http://localhost:4000/carList/?price_lte=${priceOn}`
-    ).then((r) => r.json());
-    return { carList };
-  } else if (!priceOn && priceOf) {
-    const carList = await fetch(
-      `http://localhost:4000/carList/?price_gte=${priceOf}`
-    ).then((r) => r.json());
-    return { carList };
-  } else if (priceOn && priceOf) {
-    console.log("two values");
-    const carList = await fetch(
-      `http://localhost:4000/carList/?price_gte=${priceOf}&price_lte=${priceOn}`
-    ).then((r) => r.json());
-    return { carList };
-  } else {
-    const data = await fetch("http://localhost:4000/carList");
-    const carList = await data.json();
-    return { carList };
-  }
 }

@@ -1,14 +1,38 @@
 export async function getAdById(id) {
   await fakeNetwork();
-  const data = await fetch("http://localhost:4000/carList/" + id);
-  const ad = await data.json();
+  const ad = await fetch("http://localhost:4000/carList/" + id).then((r) =>
+    r.json()
+  );
   return ad;
 }
 
 export async function getAllAds() {
-  const data = await fetch("http://localhost:4000/carList");
-  const ads = await data.json();
+  const ads = await fetch("http://localhost:4000/carList").then((r) =>
+    r.json()
+  );
   return ads;
+}
+
+export async function getAdsByPrice() {
+  const url = new URLSearchParams(window.location.search);
+  let priceOf = url.get("priceOf");
+  let priceOn = url.get("priceOn");
+
+  if (!priceOf && priceOn) {
+    return fetch(`http://localhost:4000/carList/?price_lte=${priceOn}`).then(
+      (r) => r.json()
+    );
+  } else if (!priceOn && priceOf) {
+    return fetch(`http://localhost:4000/carList/?price_gte=${priceOf}`).then(
+      (r) => r.json()
+    );
+  } else if (priceOn && priceOf) {
+    return fetch(
+      `http://localhost:4000/carList/?price_gte=${priceOf}&price_lte=${priceOn}`
+    ).then((r) => r.json());
+  } else {
+    return getAllAds();
+  }
 }
 
 export async function createNewAd(newAd) {
@@ -50,8 +74,6 @@ export function updateAd(ad) {
       extras: ad.extras,
     }),
   });
-
-
 }
 
 export async function getMyAds() {
